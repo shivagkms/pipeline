@@ -22,6 +22,7 @@ pipeline {
 
      always {
       echo 'always runs regardless of the completion status of the Pipeline run'
+         cleanWs()
     }
     // Email Ext plugin:
     success {
