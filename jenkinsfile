@@ -11,8 +11,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                 timeout(time: x, unit: 'MINUTES') { // Time out option will make the step wait for x mins to execute if it takes more than that it will fail
-                        sh 'mvn -B -DskipTests clean package'
+                 timeout(time: 30, unit: 'MINUTES') { // Time out option will make the step wait for x mins to execute if it takes more than that it will fail
+                        sh 'ls -lrt'
                 }
             }
         }
@@ -20,6 +20,9 @@ pipeline {
 
     post {
 
+     always {
+      echo 'always runs regardless of the completion status of the Pipeline run'
+    }
     // Email Ext plugin:
     success {
 
