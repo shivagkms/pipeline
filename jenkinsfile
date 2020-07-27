@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
 
@@ -9,7 +11,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                 timeout(time: x, unit: 'MINUTES') { // Time out option will make the step wait for x mins to execute if it takes more than that it will fail
+                        sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
     }
